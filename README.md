@@ -159,3 +159,13 @@ Here is a visual of the predicted vs. actual rainfall trends for the last 10 mon
 
 We can see that the predictions have tracked the actual incidences of rainfall quite closely. Particularly, the last month of actual rainfall came in at 217.3 mm, which is substantially higher than the average of 132.42 mm across all months in the dataset. The LSTM model predicted a value of 226.65 mm for the last month, which illustrates that the model has been quite adept at predicting more extreme values (at least across this dataset for the 10 months provided).
 
+## Conclusion
+
+In this example, you have seen:
+
+- How to prepare data for use with an LSTM model
+- Construction of an LSTM model
+- How to test LSTM prediction accuracy
+- The advantages of using LSTM to model volatile time series
+
+Many thanks for your time, and the associated repository for this example can be found [here](https://github.com/MGCodesandStats/lstm-rainfall).
