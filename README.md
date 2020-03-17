@@ -89,6 +89,8 @@ plt.legend(['train', 'val'], loc='upper left')
 plt.show()
 ```
 
+## Model Training and Prediction
+
 The model is trained across 100 epochs, and a batch size of 712 (equal to the number of data points in the training and validation set) is specified.
 
 Here is a plot of the training vs. validation loss:
@@ -109,3 +111,4 @@ plt.show()
 ```
 
 (6)
+
