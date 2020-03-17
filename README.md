@@ -8,7 +8,9 @@ Here is a graphical illustration of rainfall patterns from November 1959 for New
 
 (rainfall)
 
-Using a standard ARIMA model on volatile data such as this is typically not sufficient, as the inherent volatility in the series leads to wide confidence intervals.
+Using a standard ARIMA model on volatile data such as this is typically not sufficient, as the inherent volatility in the series leads to wide confidence intervals in the forecast.
 
 (arima)
+
+However, as a sequential neural network, LSTM models can prove superior in accounting for the volatility in a time series.
 
