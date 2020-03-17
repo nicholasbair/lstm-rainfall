@@ -68,7 +68,13 @@ The inputs are then reshaped to be in the format of *samples, time steps, featur
 # reshape input to be [samples, time steps, features]
 X_train = np.reshape(X_train, (X_train.shape[0], 1, X_train.shape[1]))
 X_val = np.reshape(X_val, (X_val.shape[0], 1, X_val.shape[1]))
+```
 
+## Model Training and Prediction
+
+The model is trained across 100 epochs, and a batch size of 712 (equal to the number of data points in the training and validation set) is specified.
+
+```
 # Generate LSTM network
 model = tf.keras.Sequential()
 model.add(LSTM(4, input_shape=(1, previous)))
@@ -88,10 +94,6 @@ plt.xlabel('epoch')
 plt.legend(['train', 'val'], loc='upper left')
 plt.show()
 ```
-
-## Model Training and Prediction
-
-The model is trained across 100 epochs, and a batch size of 712 (equal to the number of data points in the training and validation set) is specified.
 
 Here is a plot of the training vs. validation loss:
 
@@ -145,7 +147,14 @@ While the demonstrated results across the validation set are quite respectable, 
 
 As previously explained, the last 10 months of rainfall data are used as the test set. The LSTM model is then used to predict 10 months ahead, with the predictions then being compared to the actual values.
 
-The obtained results were as follows:
+The previous values down to *t-120* are used to predict the value at time *t*:
+
+```
+# Test (unseen) predictions
+Xnew = np.array([tseries.iloc[592:712],tseries.iloc[593:713],tseries.iloc[594:714],tseries.iloc[595:715],tseries.iloc[596:716],tseries.iloc[597:717],tseries.iloc[598:718],tseries.iloc[599:719],tseries.iloc[600:720],tseries.iloc[601:721]])
+```
+
+The obtained results are as follows:
 
 - **MDA:** 0.8
 - **RMSE:** 52.22
