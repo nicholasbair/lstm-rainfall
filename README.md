@@ -43,3 +43,24 @@ The data is then normalized with MinMaxScaler:
 
 With the *previous* parameter set to 120, the training and validation datasets are created. For reference, *previous = 120* means that the model is using past values from *t - 120* down to *t - 1* to predict the rainfall value at time *t*.
 
+The choice of the *previous* parameter is subject to trial and error, but 120 time periods were chosen to ensure capture of the volatility or extreme values demonstrated by the time series.
+
+```
+import tensorflow as tf
+from tensorflow.keras import layers
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import LSTM
+
+# Training and Validation data partition
+train_size = int(len(df) * 0.8)
+val_size = len(df) - train_size
+train, val = df[0:train_size,:], df[train_size:len(df),:]
+
+# Number of previous
+previous = 120
+X_train, Y_train = create_dataset(train, previous)
+X_val, Y_val = create_dataset(val, previous)
+```
+
+The inputs are then reshaped to be in the format of *samples, time steps, features*.
+
