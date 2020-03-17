@@ -16,4 +16,7 @@ However, as a sequential neural network, LSTM models can prove superior in accou
 
 ## Data Manipulation and Model Configuration
 
-x
+The dataset in question comprises of 722 months of rainfall data.
+
+712 data points are selected for training and validation purposes, i.e. to build the LSTM model. Then, the last 10 months of data are used as test data to compare with the predictions from the LSTM model.
+
