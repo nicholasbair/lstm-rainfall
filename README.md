@@ -112,3 +112,50 @@ plt.show()
 
 (6)
 
+The prediction results are compared against the validation set on the basis of Mean Directional Accuracy (MDA), root mean squared error (RMSE) and mean forecast error (MFE).
+
+```
+>>> def mda(actual: np.ndarray, predicted: np.ndarray):
+>>>     """ Mean Directional Accuracy """
+>>>     return np.mean((np.sign(actual[1:] - actual[:-1]) == np.sign(predicted[1:] - predicted[:-1])).astype(int))
+    
+>>> mda(Y_val, predictions)
+
+0.9090909090909091
+
+>>> from sklearn.metrics import mean_squared_error
+>>> from math import sqrt
+>>> mse = mean_squared_error(Y_val, predictions)
+>>> rmse = sqrt(mse)
+>>> print('RMSE: %f' % rmse)
+
+RMSE: 47.744200
+
+>>> forecast_error = (predictions-Y_val)
+>>> forecast_error
+>>> mean_forecast_error = np.mean(forecast_error)
+>>> mean_forecast_error
+
+3.5294448852539078
+```
+
+## Predicting against test data
+
+While the demonstrated results across the validation set are quite respectable, it is only by comparing the model predictions to the test (or unseen) data that we can be reasonably confident of the LSTM model holding predictive power.
+
+As previously explained, the last 10 months of rainfall data are used as the test set. The LSTM model is then used to predict 10 months ahead, with the predictions then being compared to the actual values.
+
+The obtained results were as follows:
+
+- **MDA:** 0.8
+- **RMSE:** 52.22
+- **MFE:** 1.92
+
+The MDA dropped slightly to 80%, while RMSE rose to 52.22. However, the MFE dropped to 1.92.
+
+Here is a visual of the predicted vs. actual rainfall trends for the last 10 months:
+
+(7)
+
+We can see that the predictions have tracked the actual incidences of rainfall quite closely. Particularly, the last month of actual rainfall came in at 217.3 mm, which is substantially higher than the average of 132.42 mm across all months in the dataset. The LSTM model predicted a value of 226.65 mm for the last month, which illustrates that the model has been quite adept at predicting more extreme values (at least across this dataset for the 10 months provided).
+
