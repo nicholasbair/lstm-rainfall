@@ -64,3 +64,28 @@ X_val, Y_val = create_dataset(val, previous)
 
 The inputs are then reshaped to be in the format of *samples, time steps, features*.
 
+```
+# reshape input to be [samples, time steps, features]
+X_train = np.reshape(X_train, (X_train.shape[0], 1, X_train.shape[1]))
+X_val = np.reshape(X_val, (X_val.shape[0], 1, X_val.shape[1]))
+
+# Generate LSTM network
+model = tf.keras.Sequential()
+model.add(LSTM(4, input_shape=(1, previous)))
+model.add(Dense(1))
+model.compile(loss='mean_squared_error', optimizer='adam')
+history=model.fit(X_train, Y_train, validation_split=0.2, epochs=100, batch_size=712, verbose=2)
+
+
+# list all data in history
+print(history.history.keys())
+# summarize history for accuracy
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+```
+
