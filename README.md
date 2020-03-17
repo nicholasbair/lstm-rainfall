@@ -1,1 +1,2 @@
-# lstm-rainfall
+# Modelling Volatile Time Series with LSTM Networks
+
