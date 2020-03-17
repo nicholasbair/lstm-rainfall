@@ -6,11 +6,11 @@ Yearly rainfall data can be quite volatile. Unlike temperature, which typically 
 
 Here is a graphical illustration of rainfall patterns from November 1959 for Newport, Ireland:
 
-(rainfall)
+(1)
 
 Using a standard ARIMA model on volatile data such as this is typically not sufficient, as the inherent volatility in the series leads to wide confidence intervals in the forecast.
 
-(arima)
+(2)
 
 However, as a sequential neural network, LSTM models can prove superior in accounting for the volatility in a time series.
 
@@ -19,4 +19,27 @@ However, as a sequential neural network, LSTM models can prove superior in accou
 The dataset in question comprises of 722 months of rainfall data.
 
 712 data points are selected for training and validation purposes, i.e. to build the LSTM model. Then, the last 10 months of data are used as test data to compare with the predictions from the LSTM model.
+
+Here is a snippet of the dataset:
+
+(3)
+
+A dataset matrix is then formed in order to regress the time series against past values:
+
+```
+# Form dataset matrix
+def create_dataset(df, previous=1):
+    dataX, dataY = [], []
+    for i in range(len(df)-previous-1):
+        a = df[i:(i+previous), 0]
+        dataX.append(a)
+        dataY.append(df[i + previous, 0])
+    return np.array(dataX), np.array(dataY)
+```
+
+The data is then normalized with MinMaxScaler:
+
+(4)
+
+With the *previous* parameter set to 120, the training and validation datasets are created. For reference, *previous = 120* means that the model is using past values from *t - 120* down to *t - 1* to predict the rainfall value at time *t*.
 
