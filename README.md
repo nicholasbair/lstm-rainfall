@@ -16,7 +16,7 @@ However, as a sequential neural network, LSTM models can prove superior in accou
 
 ## Data Manipulation and Model Configuration
 
-The dataset in question comprises of 722 months of rainfall data.
+The dataset in question comprises of 722 months of rainfall data. The rainfall data for Newport, Ireland was sourced from the [Met Eireann website](https://www.met.ie/climate/available-data/historical-data).
 
 712 data points are selected for training and validation purposes, i.e. to build the LSTM model. Then, the last 10 months of data are used as test data to compare with the predictions from the LSTM model.
 
