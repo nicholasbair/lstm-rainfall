@@ -74,7 +74,7 @@ model = tf.keras.Sequential()
 model.add(LSTM(4, input_shape=(1, previous)))
 model.add(Dense(1))
 model.compile(loss='mean_squared_error', optimizer='adam')
-history=model.fit(X_train, Y_train, validation_split=0.2, epochs=100, batch_size=712, verbose=2)
+history=model.fit(X_train, Y_train, validation_split=0.2, epochs=100, batch_size=448, verbose=2)
 
 
 # list all data in history
@@ -88,4 +88,6 @@ plt.xlabel('epoch')
 plt.legend(['train', 'val'], loc='upper left')
 plt.show()
 ```
+
+The model is trained across 100 epochs, and a batch size of 448 (equal to the number of data points in the training set) is specified.
 
