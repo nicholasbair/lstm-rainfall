@@ -14,3 +14,6 @@ Using a standard ARIMA model on volatile data such as this is typically not suff
 
 However, as a sequential neural network, LSTM models can prove superior in accounting for the volatility in a time series.
 
+## Data Manipulation and Model Configuration
+
+x
