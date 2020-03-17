@@ -6,7 +6,7 @@ Yearly rainfall data can be quite volatile. Unlike temperature, which typically 
 
 Here is a graphical illustration of rainfall patterns from November 1959 for Newport, Ireland:
 
-(1)
+![1](1.png)
 
 Using a standard ARIMA model on volatile data such as this is typically not sufficient, as the inherent volatility in the series leads to wide confidence intervals in the forecast.
 
