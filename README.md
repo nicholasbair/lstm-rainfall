@@ -95,3 +95,17 @@ Here is a plot of the training vs. validation loss:
 
 (5)
 
+A plot of the predicted vs. actual rainfall is also generated:
+
+```
+# Plot all predictions
+inversetransform, =plt.plot(scaler.inverse_transform(df))
+trainpred, =plt.plot(trainpredPlot)
+valpred, =plt.plot(valpredPlot)
+plt.xlabel('Days')
+plt.ylabel('Rainfall')
+plt.title("Predicted vs. Actual Rainfall")
+plt.show()
+```
+
+(6)
