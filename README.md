@@ -10,7 +10,7 @@ Here is a graphical illustration of rainfall patterns from November 1959 for New
 
 Using a standard ARIMA model on volatile data such as this is typically not sufficient, as the inherent volatility in the series leads to wide confidence intervals in the forecast.
 
-(2)
+![2](2.png)
 
 However, as a sequential neural network, LSTM models can prove superior in accounting for the volatility in a time series.
 
@@ -22,7 +22,7 @@ The dataset in question comprises of 722 months of rainfall data.
 
 Here is a snippet of the dataset:
 
-(3)
+![3](3.png)
 
 A dataset matrix is then formed in order to regress the time series against past values:
 
@@ -39,7 +39,7 @@ def create_dataset(df, previous=1):
 
 The data is then normalized with MinMaxScaler:
 
-(4)
+![4](4.png)
 
 With the *previous* parameter set to 120, the training and validation datasets are created. For reference, *previous = 120* means that the model is using past values from *t - 120* down to *t - 1* to predict the rainfall value at time *t*.
 
@@ -95,7 +95,7 @@ The model is trained across 100 epochs, and a batch size of 712 (equal to the nu
 
 Here is a plot of the training vs. validation loss:
 
-(5)
+![5](5.png)
 
 A plot of the predicted vs. actual rainfall is also generated:
 
@@ -110,7 +110,7 @@ plt.title("Predicted vs. Actual Rainfall")
 plt.show()
 ```
 
-(6)
+![6](6.png)
 
 The prediction results are compared against the validation set on the basis of Mean Directional Accuracy (MDA), root mean squared error (RMSE) and mean forecast error (MFE).
 
@@ -155,7 +155,7 @@ The MDA dropped slightly to 80%, while RMSE rose to 52.22. However, the MFE drop
 
 Here is a visual of the predicted vs. actual rainfall trends for the last 10 months:
 
-(7)
+![7](7.png)
 
 We can see that the predictions have tracked the actual incidences of rainfall quite closely. Particularly, the last month of actual rainfall came in at 217.3 mm, which is substantially higher than the average of 132.42 mm across all months in the dataset. The LSTM model predicted a value of 226.65 mm for the last month, which illustrates that the model has been quite adept at predicting more extreme values (at least across this dataset for the 10 months provided).
 
