@@ -145,6 +145,10 @@ RMSE: 49.99
 -1.267682231556286
 ```
 
+- **MDA:** 0.909
+- **RMSE:** 49.99
+- **MFE:** -1.26
+
 ## Predicting against test data
 
 While the demonstrated results across the validation set are quite respectable, it is only by comparing the model predictions to the test (or unseen) data that we can be reasonably confident of the LSTM model holding predictive power.
