@@ -8,11 +8,15 @@ Here is a graphical illustration of rainfall patterns from November 1959 for New
 
 ![1](1.png)
 
-Using a standard ARIMA model on volatile data such as this is typically not sufficient, as the inherent volatility in the series leads to wide confidence intervals in the forecast.
+As a sequential neural network, LSTM models can prove superior in accounting for the volatility in a time series.
 
-![2](2.png)
+Using the Ljung-Box test, the p-value of less than 0.05 indicates that the residuals in this time series demonstrate a random pattern, indicating significant volatility:
 
-However, as a sequential neural network, LSTM models can prove superior in accounting for the volatility in a time series.
+```
+>>> res = sm.tsa.ARMA(tseries, (1,1)).fit(disp=-1)
+>>> sm.stats.acorr_ljungbox(res.resid, lags=[10])
+(array([78.09028704]), array([1.18734005e-12]))
+```
 
 ## Data Manipulation and Model Configuration
 
@@ -131,14 +135,14 @@ The prediction results are compared against the validation set on the basis of M
 >>> rmse = sqrt(mse)
 >>> print('RMSE: %f' % rmse)
 
-RMSE: 47.744200
+RMSE: 49.99
 
 >>> forecast_error = (predictions-Y_val)
 >>> forecast_error
 >>> mean_forecast_error = np.mean(forecast_error)
 >>> mean_forecast_error
 
-3.5294448852539078
+-1.267682231556286
 ```
 
 ## Predicting against test data
@@ -157,16 +161,10 @@ Xnew = np.array([tseries.iloc[592:712],tseries.iloc[593:713],tseries.iloc[594:71
 The obtained results are as follows:
 
 - **MDA:** 0.8
-- **RMSE:** 52.22
-- **MFE:** 1.92
+- **RMSE:** 49.57
+- **MFE:** -6.94
 
-The MDA dropped slightly to 80%, while RMSE rose to 52.22. However, the MFE dropped to 1.92.
-
-Here is a visual of the predicted vs. actual rainfall trends for the last 10 months:
-
-![7](7.png)
-
-We can see that the predictions have tracked the actual incidences of rainfall quite closely. Particularly, the last month of actual rainfall came in at 217.3 mm, which is substantially higher than the average of 132.42 mm across all months in the dataset. The LSTM model predicted a value of 226.65 mm for the last month, which illustrates that the model has been quite adept at predicting more extreme values (at least across this dataset for the 10 months provided).
+With the mean rainfall for the last 10 months having come in at 148.93 mm, the forecast accuracy has shown similar performance to that of the validation set, and errors are low relative to the mean rainfall computed across the test set.
 
 ## Conclusion
 
